@@ -1,7 +1,12 @@
 # Disconnected OCP Install Helper
 
 ## Overview
-This project follows the [Red Hat documentation](https://docs.openshift.com/container-platform/3.5/install_config/install/disconnected_install.html) for creating a disconnected controller/repository to use in the installation of the OpenShift Container Platform.
+This project follows the Red Hat documentation for creating a disconnected controller/repository to use in the installation of the OpenShift Container Platform.
+
+## Documentation Reference
+- [v3.4](https://docs.openshift.com/container-platform/3.4/install_config/install/disconnected_install.html)
+- [v3.5](https://docs.openshift.com/container-platform/3.5/install_config/install/disconnected_install.html)
+- [v3.6](https://docs.openshift.com/container-platform/3.6/install_config/install/disconnected_install.html)
 
 ## Prerequisites
 * Git
@@ -12,7 +17,8 @@ This project follows the [Red Hat documentation](https://docs.openshift.com/cont
 * Access to these repositories:
     - rhel-7-server-rpms
     - rhel-7-server-extras-rpms
-    - rhel-7-server-ose-3.5-rpms
+    - rhel-7-fast-datapath-rpms
+    - rhel-7-server-ose-<ocp version>-rpms
 
 ## Warning
 This is not intended to create a full set of releases or patches. It is simply designed to create a minimal set of packages that can be used to install OCP. A large number of packages are filtered out of the repostiories that are created by the installer in order to reduce the on-disk size. This means that critical packages and updates *not required by OpenShift* may be missing. Similarly this is not a reliable way to update OCP offline for that same reason.
@@ -23,7 +29,7 @@ Before starting the build host must have an active subcription and must have the
 ```bash
 subscription-manager register
 subscription-manager attach --pool=<poolid>
-subscription-manager repos --disable=\* --enable=rhel-7-server-rpms --enable rhel-7-server-extras-rpms --enable rhel-7-server-ose-3.5-rpms
+subscription-manager repos --disable=\* --enable=rhel-7-server-rpms --enable rhel-7-server-extras-rpms --enable rhel-7-server-ose-<ocp version>-rpms
 ```
 
 You must also log into the Red Hat docker repository with your RHN account details. (As well as any other required/private repositories.)
@@ -32,7 +38,7 @@ You must also log into the Red Hat docker repository with your RHN account detai
 docker login registry.access.redhat.com
 ```
 
-Copy the conf.default.yml file to conf.yml. Edit the contents of conf.yml (if required). You can add extra repositories and docker images as needed. 
+Copy the conf.default.yml file to conf.yml. Edit the contents of conf.yml (if required). You can add extra repositories and docker images as needed. By default the installer looks for conf.<environment>.yml, conf.yml, and then conf.default.yml. Using this mechanism you can have configurations for different environments or different versions.
 
 To execute the installation run the ansible-playbook command. The output will be an an Archive that contains all of the materials required to install OCP on a target system.
 
@@ -83,11 +89,8 @@ To override the hostname pass in the `-e CLI_HOSTNAME=somehostname.company.com` 
 ## In Place Install
 In some cases it may make more sense to use an already created target system as the controller. In those cases this playbook can perform an 'in place' installation. This would be the case in situations where the controller has network access (but the rest of the system does not) or where the VM could be snapshotted or imaged and transfered from an environment with connectivity to another environment without.
 
-In that case the `[inplace.yml](/inplace.yml)` playbook will turn the current system into a system running containerized instances of the applications for hosting the images and rpms as well as having Ansible and all of the Ansible content for OCP present.
+In that case the `[inplace.yml](./inplace.yml)` playbook will turn the current system into a system running containerized instances of the applications for hosting the images and rpms as well as having Ansible and all of the Ansible content for OCP present.
 
 ```bash
 ansible-playbooks -i hosts inplace.yml
 ```
-
-
-

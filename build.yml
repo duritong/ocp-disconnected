@@ -4,6 +4,7 @@
 # can control/serve a disconnected OCP right out
 # of the box
 # https://docs.openshift.com/container-platform/3.5/install_config/install/disconnected_install.html
+# https://docs.openshift.com/container-platform/3.6/install_config/install/disconnected_install.html
 
 # build procedure only targets localhost
 - hosts: localhost
@@ -56,7 +57,7 @@
   - name: "Install pip packages required for docker integration"
     pip:
       name:
-        - docker-py        
+        - docker-py
 
   - name: "Ensure that Docker is running (so we can issue commands)"
     service:
@@ -137,7 +138,7 @@
 
   - name: "Copy localhost hosts file"
     copy:
-      src: "{{ playbook_dir }}/hosts"    
+      src: "{{ playbook_dir }}/hosts"
       dest: "{{ content_dir }}/hosts"
     when: not inplace
 
