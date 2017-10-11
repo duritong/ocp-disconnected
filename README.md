@@ -38,7 +38,7 @@ You must also log into the Red Hat docker repository with your RHN account detai
 docker login registry.access.redhat.com
 ```
 
-Copy the conf.default.yml file to conf.yml. Edit the contents of conf.yml (if required). You can add extra repositories and docker images as needed. By default the installer looks for conf.<environment>.yml, conf.yml, and then conf.default.yml. Using this mechanism you can have configurations for different environments or different versions.
+Copy the conf.default.yml file to conf.yml. Edit the contents of conf.yml (if required). You can add extra repositories and docker images as needed. By default the installer looks for conf.`<environment>`.yml, conf.yml, and then conf.default.yml. Using this mechanism you can have configurations for different environments or different versions.
 
 To execute the installation run the ansible-playbook command. The output will be an an Archive that contains all of the materials required to install OCP on a target system.
 
