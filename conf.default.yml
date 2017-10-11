@@ -1,6 +1,6 @@
 ---
 versions:
-  ocp: 3.5
+  ocp: 3.6
 system:
   rpms:
     - yum-utils
@@ -13,7 +13,8 @@ system:
 rpm_repositories:
   - rhel-7-server-rpms
   - rhel-7-server-extras-rpms
-  - rhel-7-server-ose-3.5-rpms
+  - rhel-7-fast-datapath-rpms
+  - rhel-7-server-ose-3.6-rpms
 registries:
   # utility/handy images usually for
   # use on the system that will be
@@ -29,34 +30,85 @@ registries:
   # in the internal registry
   - name: ose3-component-images
     url: registry.access.redhat.com
-    tag: v3.5
+    tag: v3.6
     images:
-    - openshift3/ose-haproxy-router
+    - openshift3/ose-ansible
+    - openshift3/ose-cluster-capacity
     - openshift3/ose-deployer
-    - openshift3/ose-sti-builder
     - openshift3/ose-docker-builder
-    - openshift3/ose-pod
     - openshift3/ose-docker-registry
+    - openshift3/ose-egress-http-proxy
+    - openshift3/ose-egress-router
+    - openshift3/ose-f5-router
+    - openshift3/ose-federation
     - openshift3/ose-haproxy-router
-    - openshift3/ose-deployer
-    - openshift3/ose-sti-builder
-    - openshift3/ose-docker-builder
+    - openshift3/ose-keepalived-ipfailover
     - openshift3/ose-pod
-    - openshift3/ose-docker-registry
+    - openshift3/ose-sti-builder
+    - openshift3/ose
+    - openshift3/container-engine
+    - openshift3/efs-provisioner
+    - openshift3/node
+    - openshift3/openvswitch
+  # supplemental images to support logging and other
+  # additional capabilities in openshift
+  - name: ose3-supplemental-images
+    url: registry.access.redhat.com
+    tag: v3.6
+    images:
+    - openshift3/logging-auth-proxy
+    - openshift3/logging-curator
     - openshift3/logging-deployer
     - openshift3/logging-elasticsearch
-    - openshift3/logging-kibana
     - openshift3/logging-fluentd
-    - openshift3/logging-curator
-    - openshift3/logging-auth-proxy
+    - openshift3/logging-kibana
+    - openshift3/metrics-cassandra
     - openshift3/metrics-deployer
     - openshift3/metrics-hawkular-metrics
-    - openshift3/metrics-cassandra
+    - openshift3/metrics-hawkular-openshift-agent
     - openshift3/metrics-heapster
-    - openshift3/registry-console
+    - openshift3/ose-service-catalog
+    - openshift3/ose-ansible-service-broker
+    - openshift3/mediawiki-apb
+    - openshift3/postgresql-apb
   # host, binary, and s2i images that will be rehosted in the
   # internal registry
   - name: ose3-hosted-images
     url: registry.access.redhat.com
     tag: latest
-    images: []
+    images:
+    - rhscl/s2i-base-rhel7
+    - jboss-eap-7/eap70-openshift
+    - jboss-amq-6/amq62-openshift
+    - jboss-datagrid-6/datagrid65-openshift
+    - jboss-decisionserver-6/decisionserver63-openshift
+    - jboss-decisionserver-6/decisionserver64-openshift
+    - jboss-eap-6/eap64-openshift
+    - jboss-eap-7/eap70-openshift
+    - jboss-webserver-3/webserver30-tomcat7-openshift
+    - jboss-webserver-3/webserver30-tomcat8-openshift
+    - openshift3/jenkins-1-rhel7
+    - openshift3/jenkins-2-rhel7
+    - openshift3/jenkins-slave-base-rhel7
+    - openshift3/jenkins-slave-maven-rhel7
+    - openshift3/jenkins-slave-nodejs-rhel7
+    - rhscl/mongodb-26-rhel7
+    - rhscl/mongodb-32-rhel7
+    - rhscl/mongodb-34-rhel7
+    - rhscl/mysql-56-rhel7
+    - rhscl/mysql-57-rhel7
+    - rhscl/nodejs-6-rhel7
+    - rhscl/perl-520-rhel7
+    - rhscl/perl-524-rhel7
+    - rhscl/php-56-rhel7
+    - rhscl/php-70-rhel7
+    - rhscl/postgresql-95-rhel7
+    - rhscl/postgresql-96-rhel7
+    - rhscl/python-27-rhel7
+    - rhscl/python-34-rhel7
+    - rhscl/python-35-rhel7
+    - redhat-sso-7/sso70-openshift
+    - redhat-sso-7/sso71-openshift
+    - rhscl/ruby-22-rhel7
+    - rhscl/ruby-23-rhel7
+    - rhscl/ruby-24-rhel7
