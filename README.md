@@ -89,7 +89,7 @@ To override the hostname pass in the `-e CLI_HOSTNAME=somehostname.company.com` 
 ## In Place Install
 In some cases it may make more sense to use an already created target system as the controller. In those cases this playbook can perform an 'in place' installation. This would be the case in situations where the controller has network access (but the rest of the system does not) or where the VM could be snapshotted or imaged and transfered from an environment with connectivity to another environment without.
 
-In that case the `[inplace.yml](./inplace.yml)` playbook will turn the current system into a system running containerized instances of the applications for hosting the images and rpms as well as having Ansible and all of the Ansible content for OCP present.
+In that case the [`inplace.yml`](./inplace.yml) playbook will turn the current system into a system running containerized instances of the applications for hosting the images and rpms as well as having Ansible and all of the Ansible content for OCP present.
 
 ```bash
 ansible-playbooks -i hosts inplace.yml
