@@ -15,6 +15,7 @@ rpm_repositories:
   - rhel-7-server-extras-rpms
   - rhel-7-fast-datapath-rpms
   - rhel-7-server-ose-3.6-rpms
+rpm_exclusion_filter: "*.i686, kde*, gnome*, texlive*, xorg*, virt-p2v*, firefox*, gimp*, java-1.6*, postgres*"
 registries:
   # utility/handy images usually for
   # use on the system that will be

@@ -65,7 +65,7 @@
       state: present
       dest: "{{ build_dir }}/yum.conf"
       regexp: "^exclude=.*"
-      line: "exclude=*.i686, kde*, gnome*, texlive*, xorg*, virt-p2v*, firefox*, gimp*, java-1.6*, postgres*"
+      line: "exclude={{ rpm_exclusion_filter }}"
 
   - name: "Syncronize target repositories (this may take some time)"
     command: "reposync --gpgcheck -lm --repoid={{ item }} --download_path={{ content_dir }}/repos/ --arch=x86_64 -n -d -c {{ build_dir }}/yum.conf"
