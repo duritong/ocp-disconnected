@@ -39,26 +39,6 @@
       name: "{{ config.system.rpms }}"
       state: present
 
-  - name: "Download pip installation script"
-    get_url:
-      url: https://bootstrap.pypa.io/get-pip.py
-      dest: /tmp/get-pip.py
-    register: get_pip_url
-
-  - name: "See if pip exists"
-    stat:
-      path: "/usr/bin/pip"
-    register: pip_file
-
-  - name: "Execute pip installation"
-    command: "/usr/bin/python /tmp/get-pip.py"
-    when: get_pip_url.changed or not pip_file.stat.exists
-
-  - name: "Install pip packages required for docker integration"
-    pip:
-      name:
-        - docker-py
-
   - name: "Ensure that Docker is running (so we can issue commands)"
     service:
       state: started

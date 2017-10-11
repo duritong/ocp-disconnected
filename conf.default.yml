@@ -7,9 +7,9 @@ system:
     - createrepo
     - docker
     - git
-    - python27-python-pip
     - curl
     - vim
+    - python-docker-py
 rpm_repositories:
   - rhel-7-server-rpms
   - rhel-7-server-extras-rpms

@@ -18,7 +18,7 @@ This project follows the Red Hat documentation for creating a disconnected contr
     - rhel-7-server-rpms
     - rhel-7-server-extras-rpms
     - rhel-7-fast-datapath-rpms
-    - rhel-7-server-ose-<ocp version>-rpms
+    - rhel-7-server-ose-${ocp version}-rpms
 
 ## Warning
 This is not intended to create a full set of releases or patches. It is simply designed to create a minimal set of packages that can be used to install OCP. A large number of packages are filtered out of the repostiories that are created by the installer in order to reduce the on-disk size. This means that critical packages and updates *not required by OpenShift* may be missing. Similarly this is not a reliable way to update OCP offline for that same reason.
@@ -29,7 +29,7 @@ Before starting the build host must have an active subcription and must have the
 ```bash
 subscription-manager register
 subscription-manager attach --pool=<poolid>
-subscription-manager repos --disable=\* --enable=rhel-7-server-rpms --enable rhel-7-server-extras-rpms --enable rhel-7-server-ose-<ocp version>-rpms
+subscription-manager repos --disable=\* --enable=rhel-7-server-rpms --enable rhel-7-server-extras-rpms --enable rhel-7-server-ose-${ocp version}-rpms
 ```
 
 You must also log into the Red Hat docker repository with your RHN account details. (As well as any other required/private repositories.)
