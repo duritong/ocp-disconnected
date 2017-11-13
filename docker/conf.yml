@@ -1,6 +1,6 @@
 ---
 versions:
-  ocp: 3.5
+  ocp: 3.6
 system:
   rpms:
     - createrepo
@@ -26,7 +26,7 @@ registries:
   # in the internal registry
   - name: ose3-component-images
     url: registry.access.redhat.com
-    tag: v3.5
+    tag: v3.6
     images:
     - openshift3/ose-haproxy-router
     - openshift3/ose-deployer
