@@ -11,10 +11,11 @@ RUN yum install -y \
         git \
         docker \
         docker-common \
-        atomic-openshift-utils
+        atomic-openshift-utils \
+        python-docker-py
 RUN mkdir -p /data && mkdir /exports
 WORKDIR /data
-RUN git clone https://github.com/duritong/ocp-disconnected.git && cd ocp-disconnected && checkout -b docker origin/docker && mkdir -p /data/ocp-disconnected/build && mkdir -p /data/ocp-disconnected/conf
+RUN git clone https://github.com/duritong/ocp-disconnected.git && cd ocp-disconnected && git checkout -b docker origin/docker && mkdir -p /data/ocp-disconnected/build && mkdir -p /data/ocp-disconnected/conf
 VOLUME /data/ocp-disconnected/build
 COPY conf.yml  /data/ocp-disconnected/conf.yml     
 ADD bin/*  /usr/local/bin/
