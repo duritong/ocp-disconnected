@@ -35,6 +35,7 @@ registries:
     - openshift3/ose-pod
     - openshift3/ose-docker-registry
     - openshift3/ose-haproxy-router
+    - openshift3/ose-logging-fluentd
     - openshift3/ose-deployer
     - openshift3/ose-sti-builder
     - openshift3/ose-docker-builder
@@ -43,7 +44,6 @@ registries:
     - openshift3/logging-deployer
     - openshift3/logging-elasticsearch
     - openshift3/logging-kibana
-    - openshift3/logging-fluentd
     - openshift3/logging-curator
     - openshift3/logging-auth-proxy
     - openshift3/metrics-deployer
