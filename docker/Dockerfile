@@ -6,7 +6,7 @@ LABEL io.k8s.display-name="Image for OCP disconnected" \
 RUN yum install -y \
         --enablerepo=rhel-7-server-rpms \
         --enablerepo=rhel-7-server-extras-rpms \
-        --enablerepo=rhel-7-server-ose-3.5-rpms \
+        --enablerepo=rhel-7-server-ose-3.6-rpms \
         --enablerepo=rhel-7-fast-datapath-rpms \
         git \
         docker \
