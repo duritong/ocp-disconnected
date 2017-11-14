@@ -124,7 +124,7 @@
     when: not inplace
 
   - name: "Archive build contents as release artifact"
-    command: "/usr/bin/tar cvf {{ build_dir }}/ocp-disconnected-{{ config.versions.ocp }}.tar.gz ocp-disconnected-{{ config.versions.ocp }}"
+    command: "/usr/bin/tar czvf {{ build_dir }}/ocp-disconnected-{{ config.versions.ocp }}.tar.gz ocp-disconnected-{{ config.versions.ocp }}"
     args:
       chdir: "{{ build_dir }}/content"
       warn: false # ansible >= 2.3 has an 'archive' module, fix then
